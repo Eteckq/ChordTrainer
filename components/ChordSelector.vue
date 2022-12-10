@@ -6,22 +6,26 @@
       </option>
     </select> -->
 
-    <select v-model="selectedMode" class="my-5 border rounded p-2" name="bank">
+    <select
+      v-model="selectedFondamentale"
+      class="my-5 border rounded p-2 text-black"
+      name="bank"
+    >
+      <option v-for="note in notes" :key="note" :value="note">
+        {{ note }}
+      </option>
+    </select>
+    <select
+      v-model="selectedMode"
+      class="my-5 border rounded p-2 text-black"
+      name="bank"
+    >
       <option
         v-for="(type, index) in bank[selectedBank]"
         :key="index"
         :value="index"
       >
         {{ index }}
-      </option>
-    </select>
-    <select
-      v-model="selectedFondamentale"
-      class="my-5 border rounded p-2"
-      name="bank"
-    >
-      <option v-for="note in notes" :key="note" :value="note">
-        {{ note }}
       </option>
     </select>
 

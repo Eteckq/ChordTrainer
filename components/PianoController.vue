@@ -3,12 +3,12 @@
     <Piano
       :highlightedNotes="highlightedNotes"
       :pressedNotes="pressedNotes"
-      :octaveLenght="2"
+      :octaveLenght="octaveLenght"
       :displayNotes="false"
       @onReleaseNote="(note) => removeNote(note)"
       @onClickNote="(note) => addNote(note)"
     />
-    <ChordSelector @chordSelected="(notes) => highlight(notes)" />
+    
   </div>
 </template>
 
@@ -17,19 +17,25 @@ export default {
   name: "PianoController",
   data() {
     return {
-      highlightedNotes: [],
-      pressedNotes: [],
     };
   },
+  computed: {
+    octaveLenght(){
+      return this.$store.state.piano.octaveCount
+    },
+    pressedNotes(){
+      return this.$store.state.piano.pressedNotes
+    },
+    highlightedNotes(){
+      return this.$store.state.piano.highlightedNotes
+    },
+  },
   methods: {
-    highlight(notes) {
-      this.highlightedNotes = notes;
+    addNote(note) {
+      this.$store.commit('piano/addPressedNote', note)
     },
-    addNote(number) {
-      this.pressedNotes.push(number);
-    },
-    removeNote(number) {
-      this.pressedNotes = this.pressedNotes.filter((n) => n != number);
+    removeNote(note) {
+      this.$store.commit('piano/removePressedNote', note)
     },
   },
 };

@@ -11,8 +11,8 @@
           <div
             class="key"
             :class="[
-              isSharp(note.number) ? 'black' : 'white',
-              isPressed(note.number) ? 'pressed' : '',
+              isSharp(note.name) ? 'black' : 'white',
+              isPressed(note) ? 'pressed' : '',
               isHighlighted(note.name) ? 'light' : '',
             ]"
             @mousedown="pressNote(note)"
@@ -88,17 +88,17 @@ export default {
       this.isLoaded = true;
     },
     isPressed(n) {
-      return this.pressedNotes.some((number) => {
-        return number === n;
+      return this.pressedNotes.some((note) => {
+        return note.number === n.number;
       });
     },
     isHighlighted(name) {
+      if(this.highlightedNotes.length == 0) return false
       return this.highlightedNotes.some((n) => {
         return n === name;
       });
     },
-    isSharp(number) {
-      let name = this.getNameFromNumber(number);
+    isSharp(name) {
       return name[1] && name[1] === "#";
     },
     getNameFromNumber(number) {
@@ -107,13 +107,10 @@ export default {
       ];
     },
     pressNote(note) {
-      this.$emit("onClickNote", note.number);
+      this.$emit("onClickNote", note);
     },
     removeNote(note) {
-      this.$emit("onReleaseNote", note.number);
-    },
-    setHighlightedNotes(...numbers) {
-      this.highlightedNotes = numbers;
+      this.$emit("onReleaseNote", note);
     },
   },
 };
