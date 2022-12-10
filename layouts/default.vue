@@ -4,3 +4,11 @@
       <Nuxt />
   </div>
 </template>
+
+<script>
+export default {
+  created(){
+    this.$store.dispatch('midi/init')
+  }
+}
+</script>

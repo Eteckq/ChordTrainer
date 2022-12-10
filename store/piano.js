@@ -2,7 +2,7 @@ export const state = () => ({
   pressedNotes: [],
   highlightedNotes: [],
   startingOctave: 4,
-  octaveCount: 1,
+  octaveCount: 2,
 });
 
 export const mutations = {
@@ -18,7 +18,7 @@ export const mutations = {
   addPressedNote(state, note) {
     state.pressedNotes.push(note);
   },
-  removePressedNote(state, note) {
-    state.pressedNotes = state.pressedNotes.filter((n) => n.number != note.number);
+  removePressedNote(state, number) {
+    state.pressedNotes = state.pressedNotes.filter((n) => n.number != number);
   },
 };

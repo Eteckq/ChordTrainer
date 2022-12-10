@@ -35,7 +35,7 @@ export default {
       this.$store.commit('piano/addPressedNote', note)
     },
     removeNote(note) {
-      this.$store.commit('piano/removePressedNote', note)
+      this.$store.commit('piano/removePressedNote', note.number)
     },
   },
 };

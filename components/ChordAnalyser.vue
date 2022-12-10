@@ -19,16 +19,11 @@ export default {
     chords() {
       return this.$store.state.bank.chords;
     },
-    notes() {
-      return this.$store.state.bank.notes;
-    },
   },
   watch: {
     "$store.state.piano.pressedNotes"(pressedNotes) {
       if (pressedNotes.length > 0){
-        let uniquesPressedNotes = [...new Set(pressedNotes.map((n) => n.name))]
-        uniquesPressedNotes.sort((a,b) => this.notes.indexOf(a) - this.notes.indexOf(b))
-        this.findChordFromNotes(uniquesPressedNotes);
+        this.findChordFromNotes([...new Set([...pressedNotes].sort((a,b) => a.number - b.number).map((n) => n.name))]);
       }
     },
   },

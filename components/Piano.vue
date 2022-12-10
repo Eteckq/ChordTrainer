@@ -107,7 +107,7 @@ export default {
       ];
     },
     pressNote(note) {
-      this.$emit("onClickNote", note);
+      this.$emit("onClickNote", {...note, velocity: 0.6});
     },
     removeNote(note) {
       this.$emit("onReleaseNote", note);
