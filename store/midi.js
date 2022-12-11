@@ -1,5 +1,7 @@
 import { WebMidi } from "webmidi";
 
+const FIX_MIDI_GAP = -1
+
 export const state = () => ({
   devices: [],
   activeOutputs: [],
@@ -9,15 +11,15 @@ export const actions = {
   setupInput({ commit }, device) {
     const state = this;
     device.addListener("noteon", "all", function (e) {
-      state.commit("piano/addPressedNote", {
-        number: e.note.number,
+      state.dispatch("piano/addAndPlayNote", {
+        number: e.note.number+12*FIX_MIDI_GAP,
         name: e.note.accidental ? e.note.name + e.note.accidental : e.note.name,
-        ocatve: e.note.octave,
+        octave: e.note.octave+1*FIX_MIDI_GAP,
         velocity: e.note.attack,
       });
     });
     device.addListener("noteoff", "all", function (e) {
-      state.commit("piano/removePressedNote", e.note.number);
+      state.dispatch("piano/removeAndStopNote", e.note.number+12*FIX_MIDI_GAP);
     });
 
     // device.addListener('controlchange', 'all', function (e) {

@@ -1,9 +1,20 @@
 export const state = () => ({
   pressedNotes: [],
   highlightedNotes: [],
-  startingOctave: 4,
+  startingOctave: 3,
   octaveCount: 2,
 });
+export const actions = {
+  addAndPlayNote({ commit }, note) {
+    this.dispatch('sounds/playNote', note)
+    commit('addPressedNote', note)
+  },
+  removeAndStopNote({ commit }, number) {
+    this.dispatch('sounds/stopNote', number)
+    commit('removePressedNote', number)
+  },
+}
+
 
 export const mutations = {
   setStartingOctave(state, octave) {
