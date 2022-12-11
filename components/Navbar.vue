@@ -25,18 +25,10 @@
           </li>
           <li>
             <NuxtLink
-              to="/analyser"
+              to="/training"
               exact-active-class="text-blue-700"
               class="hover:text-blue-700 text-gray-400 border-gray-700"
-              >Services</NuxtLink
-            >
-          </li>
-          <li>
-            <NuxtLink
-              to="/analyser"
-              exact-active-class="text-blue-700"
-              class="hover:text-blue-700 text-gray-400 border-gray-700"
-              >Contact</NuxtLink
+              >Chord Training</NuxtLink
             >
           </li>
         </ul>

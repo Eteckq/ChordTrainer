@@ -2,7 +2,11 @@
   <div class="h-screen bg-gray-900 w-screen text-white overflow-hidden">
     <Navbar />
     <PianoController />
-    <Nuxt class="overflow-y-scroll bodyContent"/>
+    <Nuxt class="overflow-y-scroll bodyContent" />
+    <!-- Right Panel -->
+    <div v-if="false" class="absolute right-0 top-0 bottom-0 bg-gray-700 border-l w-1/5">
+      <Config />
+    </div>
   </div>
 </template>
 
@@ -17,6 +21,6 @@ export default {
 
 <style>
 .bodyContent {
-  height: calc(100vh - 353px)
+  height: calc(100vh - 353px);
 }
 </style>

@@ -6,20 +6,14 @@
       </option>
     </select> -->
 
-    <div>
-      <span class="text-4xl"
-        >{{
-          selectedFondamentale | translateNote($store.state.config.displayNote)
-        }} </span
-      ><span class="text-xl">{{ selectedMode }}</span>
-    </div>
-
     <div class="border mt-8 border-gray-600 w-full grid grid-cols-12">
       <div
         v-for="note in notes"
         :key="note"
         class="grid-cols-1 border-r border-l border-gray-700 cursor-pointer"
-        :class="{ 'text-black bg-gray-300': selectedFondamentale == note }"
+        :class="{
+          'text-black bg-gray-300': selectedFondamentales.includes(note),
+        }"
         @click="selectFondamentale(note)"
       >
         {{ note | translateNote($store.state.config.displayNote) }}
@@ -31,7 +25,7 @@
         v-for="(value, index) in bank[selectedBank]"
         :key="index"
         class="grid-cols-1 border py-2 border-gray-700 cursor-pointer"
-        :class="{ 'text-black bg-gray-300': selectedMode == index }"
+        :class="{ 'text-black bg-gray-300': selectedModes.includes(index) }"
         @click="selectMode(index)"
       >
         {{ index }}
@@ -50,8 +44,8 @@ export default {
   data() {
     return {
       selectedBank: "chords",
-      selectedMode: null,
-      selectedFondamentale: null,
+      selectedModes: [],
+      selectedFondamentales: [],
     };
   },
   computed: {
@@ -63,34 +57,37 @@ export default {
     },
   },
   watch: {
-    selectedBank() {
+    selectedModes() {
       this.select();
     },
-    selectedMode() {
-      this.select();
-    },
-    selectedFondamentale() {
+    selectedFondamentales() {
       this.select();
     },
   },
   mounted() {
-    this.selectedMode = "maj";
-    this.selectedFondamentale = "C";
+    this.selectedModes = ["maj"];
+    this.selectedFondamentales = this.notes;
   },
   methods: {
     selectMode(mode) {
-      this.selectedMode = mode;
+      if (this.selectedModes.includes(mode)) {
+        if (this.selectedModes.length == 1) return;
+        this.selectedModes = this.selectedModes.filter((m) => m != mode);
+      } else this.selectedModes.push(mode);
     },
     selectFondamentale(note) {
-      this.selectedFondamentale = note;
+      if (this.selectedFondamentales.includes(note)) {
+        if (this.selectedFondamentales.length == 1) return;
+        this.selectedFondamentales = this.selectedFondamentales.filter(
+          (n) => n != note
+        );
+      } else this.selectedFondamentales.push(note);
     },
     select() {
-      const accord =
-        this.bank[this.selectedBank][this.selectedMode][
-          this.selectedFondamentale
-        ];
-
-      this.$emit("chordSelected", accord);
+      this.$emit("chordsSelected", {
+        modes: this.selectedModes,
+        notes: this.selectedFondamentales,
+      });
     },
   },
 };
