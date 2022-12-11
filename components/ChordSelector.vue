@@ -6,35 +6,39 @@
       </option>
     </select> -->
 
-    <select
-      v-model="selectedFondamentale"
-      class="my-5 border rounded p-2 text-black"
-      name="bank"
-    >
-      <option v-for="note in notes" :key="note" :value="note">
+    <div>
+      <span class="text-4xl">{{ selectedFondamentale }}</span
+      ><span class="text-xl">{{ selectedMode }}</span>
+    </div>
+
+    <div class="border mt-8 border-gray-600 w-full grid grid-cols-12">
+      <div
+        v-for="note in notes"
+        :key="note"
+        class="grid-cols-1 border-r border-l border-gray-700 cursor-pointer"
+        :class="{ 'text-black bg-gray-300': selectedFondamentale == note }"
+        @click="selectFondamentale(note)"
+      >
         {{ note }}
-      </option>
-    </select>
-    <select
-      v-model="selectedMode"
-      class="my-5 border rounded p-2 text-black"
-      name="bank"
-    >
-      <option
-        v-for="(type, index) in bank[selectedBank]"
+      </div>
+    </div>
+
+    <div class="border mt-8 border-gray-600 w-full grid grid-cols-6">
+      <div
+        v-for="(value, index) in bank[selectedBank]"
         :key="index"
-        :value="index"
+        class="grid-cols-1 border py-2 border-gray-700 cursor-pointer"
+        :class="{ 'text-black bg-gray-300': selectedMode == index }"
+        @click="selectMode(index)"
       >
         {{ index }}
-      </option>
-    </select>
+      </div>
+    </div>
 
     <!-- <h2 class="text-2xl font-light">
         <span v-if="selectedBank === 'scales'">Gamme</span
         ><span v-if="selectedBank === 'chords'">Accord</span>
       </h2> -->
-    <span class="text-4xl">{{ selectedFondamentale }}</span
-    ><span class="text-xl">{{ selectedMode }}</span>
   </div>
 </template>
 

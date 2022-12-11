@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ChordSelector @chordSelected="(notes) => highlight(notes)" />
+    <ChordSelector class="mt-8 px-8" @chordSelected="(notes) => highlight(notes)" />
   </div>
 </template>
 
@@ -11,6 +11,9 @@ export default {
     highlight(notes) {
       this.$store.commit("piano/setLightNotes", notes);
     },
+  },
+  beforeDestroy(){
+    this.$store.commit("piano/setLightNotes", [])
   },
 };
 </script>

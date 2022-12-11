@@ -4,7 +4,9 @@
       :highlightedNotes="highlightedNotes"
       :pressedNotes="pressedNotes"
       :octaveLenght="octaveLenght"
+      :isLoaded="isLoaded"
       :displayNotes="false"
+      :startingOctave="startingOctave"
       @onReleaseNote="(note) => removeNote(note)"
       @onClickNote="(note) => addNote(note)"
     />
@@ -29,13 +31,19 @@ export default {
     highlightedNotes(){
       return this.$store.state.piano.highlightedNotes
     },
+    startingOctave(){
+      return this.$store.state.piano.startingOctave
+    },
+    isLoaded(){
+      return this.$store.state.sounds.loaded
+    }
   },
   methods: {
     addNote(note) {
-      this.$store.commit('piano/addPressedNote', note)
+      this.$store.dispatch('piano/addAndPlayNote', note)
     },
     removeNote(note) {
-      this.$store.commit('piano/removePressedNote', note.number)
+      this.$store.dispatch('piano/removeAndStopNote', note.number)
     },
   },
 };

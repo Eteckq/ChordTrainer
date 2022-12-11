@@ -4,7 +4,7 @@
     <div class="flex">
       <!-- Center -->
       <div v-if="pianoNotes.length > 0" class="flex relative">
-        <div v-if="!isLoaded" class="absolute inset-0 z-50">
+        <div v-if="!isLoaded" class="absolute inset-0 z-50 bg-gray-800 bg-opacity-20 text-black">
           <p class="text-center py-48">Loading...</p>
         </div>
         <div v-for="(note, index) of pianoNotes" :key="index" class="relative">
@@ -54,11 +54,14 @@ export default {
       type: Number,
       default: 4,
     },
+    isLoaded: {
+      type: Boolean,
+      default: false
+    }
   },
   data() {
     return {
       pianoNotes: [],
-      isLoaded: false,
     };
   },
   created() {
@@ -85,7 +88,6 @@ export default {
         octave: this.octaveLenght + this.startingOctave,
       });
       this.pianoNotes = notes;
-      this.isLoaded = true;
     },
     isPressed(n) {
       return this.pressedNotes.some((note) => {
