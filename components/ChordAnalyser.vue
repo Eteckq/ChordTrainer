@@ -1,9 +1,10 @@
 <template>
-  <div>
-    Chords:
-    <p v-for="(chord, i) in chordsDetecteds" :key="i">
+  <div class="text-center">
+    <span class="text-2xl text-gray-400 italic">Chords</span>
+    <br>
+    <p class="text-3xl" v-for="(chord, i) in chordsDetecteds" :key="i">
       {{ chord.note }} {{ chord.chord }}
-      <span v-if="chord.renversed">(renversed)</span>
+      <span class="text-xl text-gray-500" v-if="chord.renversed">(renversed)</span>
     </p>
   </div>
 </template>

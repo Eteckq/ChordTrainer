@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ChordSelector class="mt-8 px-8" @chordSelected="(notes) => highlight(notes)" />
+    <ChordSelector class="mt-4 px-8" @chordSelected="(notes) => highlight(notes)" />
   </div>
 </template>
 

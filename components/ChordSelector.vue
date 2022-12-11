@@ -70,27 +70,24 @@ export default {
       this.select();
     },
   },
+  mounted() {
+    this.selectedMode = "maj";
+    this.selectedFondamentale = "C";
+  },
   methods: {
     selectMode(mode) {
-      if (this.selectedMode === mode) this.selectedMode = null;
-      else this.selectedMode = mode;
+      this.selectedMode = mode;
     },
     selectFondamentale(note) {
-      if (this.selectedFondamentale === note) this.selectedFondamentale = null;
-      else this.selectedFondamentale = note;
+      this.selectedFondamentale = note;
     },
     select() {
-      if (this.selectedBank && this.selectedMode && this.selectedFondamentale) {
-        if (!this.bank[this.selectedBank][this.selectedMode]) {
-          this.selectedMode = "maj";
-        }
-        const accord =
-          this.bank[this.selectedBank][this.selectedMode][
-            this.selectedFondamentale
-          ];
+      const accord =
+        this.bank[this.selectedBank][this.selectedMode][
+          this.selectedFondamentale
+        ];
 
-        this.$emit("chordSelected", accord);
-      }
+      this.$emit("chordSelected", accord);
     },
   },
 };

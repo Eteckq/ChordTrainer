@@ -2,7 +2,7 @@
   <div class="h-screen bg-gray-900 w-screen text-white overflow-hidden">
     <Navbar />
     <PianoController />
-    <Nuxt class="overflow-scroll bodyContent "/>
+    <Nuxt class="overflow-y-scroll bodyContent"/>
   </div>
 </template>
 
