@@ -9,6 +9,7 @@
     "generate": "nuxt generate"
   },
   "dependencies": {
+    "@nuxtjs/toast": "^3.3.1",
     "core-js": "^3.19.3",
     "nuxt": "^2.15.8",
     "tone": "^14.7.77",

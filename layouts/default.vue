@@ -13,7 +13,7 @@
 <script>
 export default {
   created() {
-    this.$store.dispatch("midi/init");
+    this.$store.dispatch("midi/init", {notif: this.$toast});
     this.$store.dispatch("sounds/init");
   },
 };

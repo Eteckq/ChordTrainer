@@ -41,7 +41,7 @@ export const actions = {
   //   setupOutput({ commit }, device) {
   //     commit('addOutputs', device)
   //   },
-  init({ commit, dispatch }) {
+  init({ commit, dispatch }, {notif}) {
     WebMidi.enable(function (err) {
       if (err) {
         console.error(err);
@@ -50,6 +50,7 @@ export const actions = {
 
       // Reacting when a new device becomes available
       WebMidi.addListener("connected", function (device) {
+        notif.success('New MIDI device connected')
         console.log("new device");
         commit("addDevice", device.port);
         if (device.port.type === "input") dispatch("setupInput", device.port);
