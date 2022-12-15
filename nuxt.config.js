@@ -3,7 +3,12 @@ export default {
   ssr: false,
 
   // Target: https://go.nuxtjs.dev/config-target
-  target: 'static',
+  target: 'server',
+
+  server: {
+    port: process.env.PORT || 3000,
+    host: '0.0.0.0'
+  },
 
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
