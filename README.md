@@ -1,5 +1,11 @@
 # PianoTrainer
 
+## Introduction
+
+I've made this project to help me to learn piano theory.
+
+This project is available on https://piano.yohangastoud.fr/
+
 You can plug your piano, if you have a MIDI cable.
 
 ## Chord Picker
